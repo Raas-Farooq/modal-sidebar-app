@@ -2,22 +2,22 @@ const myLinks = [
     {
       id:0,
       text:'Akhira',
-      url:'https://www.islamqa.info/en'
+      url:'hereafter'
     }, 
     {
       id:1, 
-      text:'WordLife',
-      url:'https://www.yaqeeninstitute.org'
+      text:'WorldLife',
+      url:'World'
     }, 
     {
       id:2,
       text:'Action',
-      url:'https://www.al-islam.org'
+      url:'Act'
     }, 
     {
       id:3,
       text:'Patience',
-      url:'https://www.quran.com'
+      url:'Sabar'
     }
 ];
 

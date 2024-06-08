@@ -2,7 +2,7 @@
 import Navbar from './Navbar'
 
 function App() {
-  
+  console.log("App.js Running")
   return (
     <>
       <Navbar />

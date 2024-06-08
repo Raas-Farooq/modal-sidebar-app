@@ -4,6 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import windowSize from './windowSize.js';
 import myLinks from './myLinks.js';
+import { Link } from 'react-router-dom';
+
 
 function Navbar(){
     const secondList = useRef(null);
@@ -50,7 +52,7 @@ function Navbar(){
           <div>
           <ul className="top" ref={topMenu}> 
             {myLinks.map(link => 
-              <li key={link.id}><a target="_blank" href={link.url}>{link.text}</a></li>
+              <li key={link.id}><Link to={'/' + link.url}> {link.text} </Link></li>
             )}
             </ul>
           </div>
