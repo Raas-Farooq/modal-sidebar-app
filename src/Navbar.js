@@ -1,5 +1,4 @@
-import logo from './logo.svg';
-import React,{useRef, useState, useEffect} from 'react';
+import React,{useRef, useState, useEffect, useLayoutEffect} from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -8,14 +7,16 @@ import myLinks from './myLinks.js';
 
 function Navbar(){
     const secondList = useRef(null);
+    const navbarRef = useRef(null);
     const size = windowSize();
     
-    useEffect(() => {
-        console.log("topMenu.current in useEffet: ",topMenu.current);
+    useLayoutEffect(() => {
+
         if(topMenu.current && size.width >= 600){
-        topMenu.current.classList.remove('toggleMenu');
+            
+            topMenu.current.classList.remove('toggleMenu');
+            navbarRef.current.style.height = 'auto'; 
         }
-        console.log("myLinks useEffect", myLinks);
         
     },[size.width])
 
@@ -23,12 +24,25 @@ function Navbar(){
 
     const handleMenuBtn = (e) => {
         e.preventDefault();
+
         topMenu.current.classList.toggle('toggleMenu');
+        const navHeight = navbarRef.current.getBoundingClientRect().height;
+        const topMenuHeight = topMenu.current.getBoundingClientRect().height;
+
+        console.log("scrollHeight ", topMenuHeight);
+        if(topMenuHeight > 50){
+            navbarRef.current.style.height = topMenuHeight + navHeight +"px";
+            console.log("navbarRef height: ", navbarRef.current.getBoundingClientRect().height)
+        }
+        else{
+            navbarRef.current.style.height = 60+'px';
+            console.log("navbar height < 50 ", navHeight)
+      
+        }   
     }
-  // {size.width >= 600 && topMenu.current.classList.remove('toggleMenu')}
   return (
     <div>
-        <div id="myNavbar" style={{display:"flex", justifyContent:"space-between"}}>
+        <div id="myNavbar" ref={navbarRef} style={{display:"flex", justifyContent:"space-between"}}>
    
           <div>
             <h3> Happy Coding </h3>
