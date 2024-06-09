@@ -1,8 +1,59 @@
+.parentContainer{
+  position:relative;
+}
 #myNavbar{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  /* width:600px; */
   background: #61dafb;
   box-shadow: 0 2px 5px;
 }
+.hideNavbar{
+  /* visibility: hidden; */
+  /* height: 0; */
+  animation: slide-out .5s ease-out forwards;
+}
+@keyframes slide-out {
+  0%{
+    transform: translateX(0);
+  }
+  100%{
+    transform: translateX(-100%);
+  }
+}
+.hideBtn{
+  display:none;
+}
 
+.showNavbar{
+  visibility: visible;
+  height: auto;
+  animation: slide-in 0.5s ease-in forwards;
+}
+@keyframes slide-in{
+  0%{
+    transform: translateX(-100%);
+  }
+  100%{
+    transform: translateX(0);
+  }
+}
+
+#myNavbar .socialContainer{
+  display:flex;
+  height:100%;
+  align-items: flex-end;
+  /* justify-self:baseline;
+  align-self: baseline; */
+}
+.mainContainer{
+  display:flex;
+  gap:50px;
+}
+.mainContent{
+  margin-right:20px;
+}
 li{
   margin-left:15px
 }
@@ -12,45 +63,26 @@ li{
 .social{
   margin-right:20px;
   list-style:none;
+  
   display:flex;
+  /* position:absolute;
+  bottom:5px; */
+}
+#myNavbar .navbarHeader{
+  display:flex;
+  gap:15px;
 }
 .top{
   list-style:none;
   display:flex;
+  flex-direction: column;
+  position: relative;
 }
 .menuBtn{
-  display:none;
-  margin-right:40px;
-}
-
-@media only screen and (max-width:600px){
-  .menuBtn{
-    display:block;
-    height:fit-content
-  }
-  .top, .social{
-    flex-direction:column;
-    display:none;
-  }
-
-  .top{
-    position:absolute;
-    left:2px;
-    top:50px;
-  }
-  .toggleMenu{
-    display:none;
-  }
-}
-
-.toggleMenu{
-  display:block;
-}
-
-@media only screen and (min-width:600px){
-  .toggleMenu{
-    display:flex;
-  }
+  height:40px;
+  position:absolute;
+  top:5px;
+  left:5px;
 }
 
 .App-link {
