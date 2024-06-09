@@ -51,7 +51,7 @@ function Navbar(){
             <div>
               <ul className="top" ref={topMenu}> 
                 {myLinks.map(link => 
-                  <li key={link.id}><Link to={'/' + link.url}> {link.text} </Link></li>
+                  <li key={link.id}> <a href="#">{link.text} </a></li>
                 )}
               </ul>
             </div>
