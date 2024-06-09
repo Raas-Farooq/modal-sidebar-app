@@ -3,9 +3,9 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import windowSize from './windowSize.js';
-import myLinks from './myLinks.js';
+import {myLinks, socialLinks} from './myLinks.js';
 import { Link } from 'react-router-dom';
-
+import { FaTwitter } from 'react-icons/fa';
 
 function Navbar(){
     const secondList = useRef(null);
@@ -33,8 +33,8 @@ function Navbar(){
 
         console.log("scrollHeight ", topMenuHeight);
         if(topMenuHeight > 50){
-            navbarRef.current.style.height = topMenuHeight + navHeight +"px";
-            console.log("navbarRef height: ", navbarRef.current.getBoundingClientRect().height)
+            navbarRef.current.style.height = topMenuHeight + navHeight + 10 +"px";
+            console.log("navbarRef height: ", navbarRef.current.getBoundingClientRect().height);
         }
         else{
             navbarRef.current.style.height = 60+'px';
@@ -57,11 +57,13 @@ function Navbar(){
             </ul>
           </div>
           <div>
-            <ul className="high" ref={secondList}> 
-              <li id="motto">Jaan</li>
-              <li id="motto">Maal</li>
-              <li id="motto">Namaz</li>
-              <li id="motto">Taqwa</li>
+            <ul className="social" ref={secondList}> 
+              {socialLinks.map(social => {
+                const {id, icon, url} = social;
+                return (
+                  <li key={id}><a href={url} target='_blank'> {icon} </a> </li>
+                )
+              })}
             </ul>
           </div>
           <button className="menuBtn" onClick={handleMenuBtn}> 

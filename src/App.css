@@ -9,7 +9,8 @@ li{
 #motto{
   margin-left:5px
 }
-.high{
+.social{
+  margin-right:20px;
   list-style:none;
   display:flex;
 }
@@ -27,7 +28,7 @@ li{
     display:block;
     height:fit-content
   }
-  .top, .high{
+  .top, .social{
     flex-direction:column;
     display:none;
   }
