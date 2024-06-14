@@ -1,19 +1,26 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
 import './App.css';
-import {FaBaby} from 'react-icons/fa';
+import {FaTimes} from 'react-icons/fa';
+import { appContext } from './context';
+import { render } from '@testing-library/react';
+
 
 function Modal(){
-    const [display, setDisplay] = useState(false);
-    console.log("MOdal isIndeed Running")
+    const allData = useContext(appContext);
+
+    const {modalRender, closingModal} = allData;
+
+
+
+    console.log(" renderModal", modalRender);
+    console.log(" closingModal", closingModal);
     return(
-        <div className='modalParent'>
+        <div className={modalRender ? 'showModal':'modalParent'}>
             <div className="myModal">
-                <h2> Happy On YOur EFFORT</h2>
-                <div className={display? 'showModal':'hideModal'}>
-                    {display? <button onClick={() => setDisplay(!display)} style={{height:"30px", color:"black"}}> Close </button> :
-                     <button onClick={() => setDisplay(!display)}> Action</button>
-                     }
-                   
+                <h2 style={{marginTop:"25px"}}> Happy On YOur EFFORT</h2>
+                <div >
+                    {modalRender && <button onClick={closingModal} style={{height:"30px", color:"black"}}> <FaTimes /> </button> }
+                    
                 </div>
             </div>
         </div>

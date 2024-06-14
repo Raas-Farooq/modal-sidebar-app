@@ -1,4 +1,4 @@
-import React,{useRef, useState, useEffect, useLayoutEffect} from 'react';
+import React,{useRef, useContext, useState, useEffect, useLayoutEffect} from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap-icons/font/bootstrap-icons.css';
@@ -6,9 +6,14 @@ import {myLinks, socialLinks} from './myLinks.js';
 import { Link } from 'react-router-dom';
 import {FaBars} from 'react-icons/fa';
 import { IoMdClose } from "react-icons/io";
-
+import { appContext } from './context.js';
 
 function Navbar(){
+  const allData = useContext(appContext);
+
+  const {sidebarRender, closingSidebar} = allData;
+
+  const [display, setDisplay] = useState(false);
     const secondList = useRef(null);
     const navbarRef = useRef(null);
     const menuButton = useRef(null);
@@ -27,22 +32,22 @@ function Navbar(){
 
   return (
     <div className='parentContainer'>
-       <button className={showNav ? 'hideBtn': 'menuBtn'} ref={menuButton} onClick={(e) => {
+    
+       {/* <button className={showNav ? 'hideBtn': 'menuBtn'} ref={menuButton} onClick={(e) => {
         console.log("menu bar Clicked")
        setShowNav(!showNav);
 
        }}> <FaBars />
-              {/* <i className="bi bi-list" style={{ cursor:"pointer", fontSize: '1.5rem',background:"lightblue"}}> </i> */}
-        </button>
+        </button> */}
         <div className='mainContainer'>
         
-          <div id="myNavbar" className={showNav ? 'showNavbar' : 'hideNavbar'} ref={navbarRef}>
+          <div id="myNavbar" className={sidebarRender ? 'showNavbar' : 'hideNavbar'} ref={navbarRef}>
           
             <div className="navbarHeader">
           
               <h3> Happy Coding </h3>
               
-              <button onClick={() => setShowNav(!showNav)}> <IoMdClose />
+              <button onClick={closingSidebar}> <IoMdClose />
               <i className="bi bi-clean" style={{ cursor:"pointer", fontSize: '1.5rem',background:"lightblue"}}></i>
               </button>
     
@@ -71,7 +76,8 @@ function Navbar(){
             <p>
               In the updated code, we check if topMenu.current is not null before accessing it or manipulating its classList. Additionally, we've moved the code that accesses topMenu.current inside the useEffect hook and added a dependency on size.width to ensure it runs whenever the window size chang
             </p>
-            <button> Action</button>
+            
+            
           </div>
         </div>
     </div>
