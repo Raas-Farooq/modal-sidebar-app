@@ -9,7 +9,6 @@ function App() {
     <div className='AppRoot'>
       <Home />
       <Modal />
-      <Sidebar />
     </div>
   )
 }

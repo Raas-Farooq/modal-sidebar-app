@@ -6,20 +6,15 @@ import {myLinks, socialLinks} from './myLinks.js';
 import { Link } from 'react-router-dom';
 import {FaBars} from 'react-icons/fa';
 import { IoMdClose } from "react-icons/io";
-import { appContext } from './context.js';
+import { useMyGlobalContext } from './context.js';
 
 function Navbar(){
-  const allData = useContext(appContext);
+  const topInformation = useMyGlobalContext();
+  const {isSidebarThere, hideSidebar} = topInformation;
 
-  const {sidebarRender, closingSidebar} = allData;
+  const secondList = useRef(null);
+  const navbarRef = useRef(null);
 
-  const [display, setDisplay] = useState(false);
-    const secondList = useRef(null);
-    const navbarRef = useRef(null);
-    const menuButton = useRef(null);
-    const [showNav, setShowNav] = useState(false);
-  
-    
     useLayoutEffect(() => {
 
       const socialWidth = secondList.current.getBoundingClientRect().width;
@@ -41,13 +36,13 @@ function Navbar(){
         </button> */}
         <div className='mainContainer'>
         
-          <div id="myNavbar" className={sidebarRender ? 'showNavbar' : 'hideNavbar'} ref={navbarRef}>
-          
+          <div id="myNavbar" className={isSidebarThere ? 'showNavbar': 'hideNavbar'} ref={navbarRef} >
+         
             <div className="navbarHeader">
           
               <h3> Happy Coding </h3>
               
-              <button onClick={closingSidebar}> <IoMdClose />
+              <button onClick={hideSidebar}> <IoMdClose />
               <i className="bi bi-clean" style={{ cursor:"pointer", fontSize: '1.5rem',background:"lightblue"}}></i>
               </button>
     

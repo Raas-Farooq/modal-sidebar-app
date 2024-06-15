@@ -4,30 +4,8 @@
   position: relative;
 }
 
-/* .modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
 
-  background-color: rgba(0, 0, 0, 0.5);
-}
-.modal-container{
-  position: absolute;
-  right:30%;
-  top:50%
-}
-
-*/
 .modalParent{
-  /* position: absolute;
-  right:30%;
-  top:250px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,7 +28,7 @@
   background-color: rgba(0,0,0,.5);
 
 } 
-.showModal .myModal{
+.showBox{
   background-color: white;
   position: relative;
   box-shadow: 0 2px 5px;
@@ -63,6 +41,7 @@
 }
 #myNavbar{
   position: relative;
+  z-index: 2;
   display: flex;
   flex-direction: column;
   /* width:600px; */
@@ -140,7 +119,8 @@ li{
 }
 .menuBtn{
   height:40px;
-  position:relative;
+  position:absolute;
+  z-index:1;
   top:5px;
   left:5px;
 }

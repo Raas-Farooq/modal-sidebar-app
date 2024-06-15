@@ -1,21 +1,25 @@
 import React, {useContext} from 'react';
 import {FaBars} from 'react-icons/fa';
 import { FaTimes } from 'react-icons/fa';
-import { appContext } from './context';
-function Home(){
-    const allData = useContext(appContext);
-    const {showingSidebar, showingModal} = allData;
+import { useMyGlobalContext } from './context';
+import Sidebar from './Sidebar.js';
 
-    // console.log("showingSidebar: ", showingModal);
+function Home(){
+   const globalData = useMyGlobalContext();
+   console.log("Global Data : ", globalData);
+   const {showModal, showSidebar, hideSidebar} = globalData;
+
     return(
         <div style={{position:"relative"}}>
-            <div>
-            <button className="menuBtn" onClick={showingSidebar} ><FaBars /></button>
+            <div className='upperContainer'>
+                
+                <Sidebar />
+                <button className='menuBtn btn btn-primary' onClick={showSidebar} ><FaBars /></button>
             </div>
            
            
             <div className="modalParent">
-                <button onClick={showingModal}> Action </button>
+                <button onClick={showModal} className='btn btn-warning'> Action </button>
                 {/* <button><FaTimes /></button> */}
             </div>
             

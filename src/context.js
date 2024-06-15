@@ -1,33 +1,70 @@
 import React, {useContext, useState} from 'react';
 
-const appContext = React.createContext();
 
-const AppProvider = ({children}) => {
-    const [sidebarRender, setSidebarRender] = useState(false);
-    const [modalRender, setModalRender] = useState(false);
+const AppContext = React.createContext();
 
-    const showingSidebar = () => {
-        setSidebarRender(true)
+function AppProvider({children}){
+    const [isSidebarThere, setIsSidebarThere] = useState(false)
+    const [isModalThere, setIsModalThere] = useState(false);
+
+
+    const showSidebar = () => {
+        setIsSidebarThere(true);
     }
-    const closingSidebar = () => {
-        setSidebarRender(false)
+
+    function showModal(){
+        setIsModalThere(true)
     }
-    const showingModal = () => {
-        setModalRender(true)
+    const hideSidebar = () => {
+        setIsSidebarThere(false);
     }
-    const closingModal = () => {
-        setModalRender(false)
+
+    function hideModal(){
+        setIsModalThere(false)
     }
-    return <appContext.Provider 
-        value = {{
-            sidebarRender,
-            modalRender ,
-            showingModal ,
-            showingSidebar ,
-            closingSidebar,
-            closingModal,
-        }}
-    >{children}</appContext.Provider>
+
+    return(<AppContext.Provider value={{
+        showSidebar,
+        hideSidebar,
+        showModal,
+        hideModal,
+        isSidebarThere,
+        isModalThere
+    }}> {children}</AppContext.Provider>)
+
 }
 
-export {AppProvider, appContext };
+const useMyGlobalContext = () => {
+    return useContext(AppContext);
+}
+
+export {useMyGlobalContext, AppProvider};
+// const AppProvider = ({children}) => {
+//     const [sidebarRender, setSidebarRender] = useState(false);
+//     const [modalRender, setModalRender] = useState(false);
+
+//     const showingSidebar = () => {
+//         setSidebarRender(true)
+//     }
+//     const closingSidebar = () => {
+//         setSidebarRender(false)
+//     }
+//     const showingModal = () => {
+//         setModalRender(true)
+//     }
+//     const closingModal = () => {
+//         setModalRender(false)
+//     }
+//     return <appContext.Provider 
+//         value = {{
+//             sidebarRender,
+//             modalRender ,
+//             showingModal ,
+//             showingSidebar ,
+//             closingSidebar,
+//             closingModal,
+//         }}
+//     >{children}</appContext.Provider>
+// }
+
+// export {AppProvider, appContext };
